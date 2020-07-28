@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 function DonorProfile({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Fundraiser')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Fundraiser')}>
                 <Text style={styles.buttonText}>View Tim Cook's Profile</Text>
 
             </TouchableOpacity>

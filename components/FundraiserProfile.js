@@ -7,7 +7,6 @@ import CausesSupported from "./CausesSupported";
 import InteractionList from "./InteractionList";
 import InteractionButton from "./InteractionButton";
 
-
 // const causes = [
 //   "https://www.wamc.org/sites/wamc/files/styles/x_large/public/202002/1497416271_de64.jpg",
 //   "https://www.onlinevolunteering.org/sites/default/files/unicef-logo.jpg",
@@ -27,9 +26,10 @@ function Body() {
     >
       <NamePicture />
       <View style={{ flexDirection: "row" }}>
-        <Text style={{fontSize: 30, paddingTop: 15, paddingRight: 15}}>Accepting Interactions</Text>
+        <Text style={{ fontSize: 30, paddingTop: 15, paddingRight: 15 }}>
+          Accepting Interactions
+        </Text>
         <InteractionButton isOn={value} handleToggle={() => setValue(!value)} />
-
       </View>
 
       <Bio />
