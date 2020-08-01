@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 function SignUpScreen3({ navigation }) {
-  // const [input, setInput] = useState('Default Text');
+  
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Step 3 of 3</Text>

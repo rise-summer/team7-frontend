@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, View, TextInput, StyleSheet } from 'react-native';
 import {
   Avatar
@@ -9,6 +9,34 @@ import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 
 function EditProfileScreen({ navigation }) {
+  useEffect(() => getPermissionAsync());
+
+  getPermissionAsync = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      }
+    }
+  };
+
+  _pickImage = async () => {
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+      if (!result.cancelled) {
+        updateProfile({ image: result.uri });
+      }
+
+      console.log(result);
+    } catch (E) {
+      console.log(E);
+    }
+  };
 
   const [profile, updateProfile] = useState({
     image: 'https://api.adorable.io/avatars/80/abott@adorable.png',
@@ -98,34 +126,5 @@ export default EditProfileScreen
   */
 
   /*
-  componentDidMount() {
-    getPermissionAsync();
-  }
-
-  getPermissionAsync = async () => {
-    if (Constants.platform.ios) {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status !== 'granted') {
-        alert('Sorry, we need camera roll permissions to make this work!');
-      }
-    }
-  };
-
-  _pickImage = async () => {
-    try {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-      if (!result.cancelled) {
-        updateProfile({ image: result.uri });
-      }
-
-      console.log(result);
-    } catch (E) {
-      console.log(E);
-    }
-  };
+  
   */
