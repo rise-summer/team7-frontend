@@ -29,10 +29,6 @@ function HomeScreen({ navigation }) {
           onPress={() => navigation.navigate('YourProfile')}
         />
         <Button
-          title="Settings"
-          onPress={() => navigation.navigate('Settings')}
-        />
-        <Button
           title="Requests"
           onPress={() => navigation.navigate('Requests')}
         />

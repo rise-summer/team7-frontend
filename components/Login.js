@@ -1,33 +1,60 @@
 import React, { useState } from 'react';
 import { Button, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import axios from 'axios';
+
 
 function LoginScreen({ navigation }) {
+    const [currentUser, setCurrentUser] = useState({email: "", password: ""})
+
+    function login(){
+      axios.post('http://localhost:3000/login', {
+        'email': currentUser.email,
+        'password': currentUser.password,
+      }, {withCredentials: true}).then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+      }).then(() => {
+        navigation.navigate('Home');
+      });
+    }
+
+    function onChangeTextField(key, e) {
+      setCurrentUser({
+        ...currentUser,
+        [key]: e
+      })
+    }
 
     return (
       <View style={styles.container}>
         <Text>Login to our application</Text>
         <Text>Username</Text>
-        <TextInput style={styles.inputBox} 
-          backgroundColor='#1c313a' 
+        <TextInput style={styles.inputBox}
+          backgroundColor='#1c313a'
           placeholder="Email"
           placeholderTextColor = "black"
+          value={currentUser.email}
+          onChangeText={e => onChangeTextField('email', e)}
         />
         <Text>Password</Text>
-        <TextInput style={styles.inputBox} 
-          backgroundColor='#1c313a' 
+        <TextInput style={styles.inputBox}
+          backgroundColor='#1c313a'
           placeholder="Password"
           placeholderTextColor = "black"
-        />  
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
+          value={currentUser.password}
+          onChangeText={e => onChangeTextField('password', e)}
+        />
+        <TouchableOpacity style={styles.button} onPress={login}>
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
           <Text style={styles.buttonText}>Go Back to Home</Text>
         </TouchableOpacity>
-        <Text>Don't have an account?</Text> 
+        <Text>Don't have an account?</Text>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUp1')}>
           <Text style={styles.buttonText}>Sign Up</Text>
-        </TouchableOpacity>   
+        </TouchableOpacity>
       </View>
     );
 }
