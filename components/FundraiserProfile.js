@@ -6,6 +6,7 @@ import Bio from "./Bio";
 import CausesSupported from "./CausesSupported";
 import InteractionList from "./InteractionList";
 import InteractionButton from "./InteractionButton";
+// import Modal from "./Modal"
 
 // const causes = [
 //   "https://www.wamc.org/sites/wamc/files/styles/x_large/public/202002/1497416271_de64.jpg",
@@ -14,6 +15,7 @@ import InteractionButton from "./InteractionButton";
 
 function Body() {
   const [value, setValue] = useState(false);
+  // const [show,setShow] = useState(false);
   return (
     // Vertical layout of entire profile
     <View
@@ -36,8 +38,29 @@ function Body() {
       <CausesSupported />
       {/* <ItemCard/> */}
       <InteractionList isOn={value} />
+      {/* <Button onClick={() => setShow(true)}>trigger modal</Button> */}
+      {/* <Modal
+        handleButtonClick={() => {console.log("hi I'm sending the data to backend")}}
+        show={show}
+        setShow={setShow}
+      >
+        <View>
+          Hi
+        </View>
+      </Modal> */}
     </View>
   );
 }
 
 export default Body;
+
+// ModalConductor.js
+// global variable triggeredModal
+
+// switch(triggererdModal)
+//   case ModalTypeA:
+//       return <ModalTypeA/>
+//   case ModalTypeB:
+//       return <ModalTypeB/>
+//   default:
+//       return <></>

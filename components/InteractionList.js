@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
+import PropTypes from "prop-types";
 
 // this.state = {
 //   isActive: true
@@ -24,45 +25,54 @@ var interactions = [
       "I'd love to grab a cup of coffee and talk about any questions you have about my career, advice, or life in general",
     cost: "$10",
   },
+  {
+    name: "Shadow at Work",
+    description: "Come join me for a quick tour of what I do for a living.",
+    cost: "$50",
+  },
 ];
 
-export default function interactionList(props) {
-  var arr = [1, 2, 3, 4, 5];
+function interactionList(props) {
+  const availableInteractions = props.isOn;
+
+  if (availableInteractions) {
+    if (interactions.length != 0) {
+      return interactionsListedOut(props);
+    } else {
+      return <Text>No interactions currently available</Text>;
+    }
+  }
+  return (
+    <Text
+      style={{
+        fontFamily: "Helvetica-Bold",
+        fontSize: 30,
+      }}
+    >
+      Im not currently taking any requests
+    </Text>
+  );
+}
+
+interactionList.propTypes = {
+  isOn: PropTypes.bool.isRequired,
+};
+
+function interactionsListedOut() {
   return (
     <View style={{ flex: 1, flexDirection: "row", paddingTop: 20 }}>
       {interactions.map(function (interaction, index) {
         return (
-          <View style={styles.container}>
-            <Text
-              key={index}
-              style={
-                props.isOn
-                  ? [styles.toggleControl, styles.interactionHeader]
-                  : styles.interactionHeader
-              }
-            >
+          <View key={index} style={styles.container}>
+            <Text key={index.key} style={styles.interactionHeader}>
               {" "}
               {interaction.name}{" "}
             </Text>
-            <Text
-              key={index}
-              style={
-                props.isOn
-                  ? [styles.toggleControl, styles.interactionText]
-                  : styles.interactionText
-              }
-            >
+            <Text key={index.key} style={styles.interactionText}>
               {" "}
               {interaction.description}{" "}
             </Text>
-            <Text
-              key={index}
-              style={
-                props.isOn
-                  ? [styles.toggleControl, styles.interactionText]
-                  : styles.interactionText
-              }
-            >
+            <Text key={index.key} style={styles.interactionText}>
               {" "}
               {interaction.cost}{" "}
             </Text>
@@ -73,18 +83,25 @@ export default function interactionList(props) {
   );
 }
 
+// function interactionsListedOut(props) {
+//   return (
+//     <Box maxW="sm" borderWidth="1px" rounded="lg" backgroundColor="red">
+//       <Text> HI </Text>
+//     </Box>
+//   )
+// }
+
 const styles = StyleSheet.create({
   interactionHeader: {
     fontFamily: "Helvetica-Bold",
     fontSize: 20,
-    alignItems: "baseline",
-    // alignContent: "center",
+    // alignItems: "baseline",
   },
   interactionText: {
     fontFamily: "Helvetica-Light",
     fontSize: 20,
-    // color: "red"
-    // alignContent: 'flex-start',
+    margin: 10,
+    textAlign: "left",
   },
   image: {
     height: 100,
@@ -104,3 +121,5 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
 });
+
+export default interactionList;

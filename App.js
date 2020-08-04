@@ -1,8 +1,9 @@
-import * as React from 'react';
-import DonorButton from './components/Donor'
-import FundraiserProfile from './components/FundraiserProfile'
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import * as React from "react";
+import DonorButton from "./components/Donor";
+import FundraiserProfile from "./components/FundraiserProfile";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { ThemeProvider } from "@chakra-ui/core";
 
 // function HomeScreen() {
 //   return (
@@ -14,15 +15,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Donation App"> 
-        <Stack.Screen name="Donation App" component={DonorButton} />
-        <Stack.Screen name="Fundraiser" component={FundraiserProfile} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Donation App">
+          <Stack.Screen name="Donation App" component={DonorButton} />
+          <Stack.Screen name="Fundraiser" component={FundraiserProfile} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
 
