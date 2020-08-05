@@ -78,7 +78,7 @@ function YourProfileScreen({ navigation, route }) {
             </View>
         
             <View style={styles.menuWrapper}>
-                <TouchableRipple onPress={() => {}}>
+                <TouchableRipple onPress={() => navigation.navigate('Interactions')}>
                 <View style={styles.menuItem}>
                     <Icon name="heart-outline" color="#FF6347" size={25}/>
                     <Text style={styles.menuItemText}>Services Offered</Text>

@@ -9,9 +9,8 @@ import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 
 function EditProfileScreen({ navigation }) {
-  useEffect(() => getPermissionAsync());
 
-  getPermissionAsync = async () => {
+  const getPermissionAsync = async () => {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
       if (status !== 'granted') {
@@ -20,7 +19,9 @@ function EditProfileScreen({ navigation }) {
     }
   };
 
-  _pickImage = async () => {
+  const stuff = useEffect(async () => await getPermissionAsync());
+
+  const _pickImage = async () => {
     try {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,

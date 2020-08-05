@@ -1,13 +1,75 @@
 import React, { useState } from "react";
 import { Button, View, Text, TextInput, StyleSheet, Picker } from 'react-native';
+import axios from 'axios';
 
-function SignUpScreen1({ navigation }) {
+function SignUpScreen({ navigation }) {
   const [selectedValue, setSelectedValue] = useState("software");
+
+  const [profile, setProfile] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  })
+
+  function signup() {
+    console.log("...")
+  }
+
+  /*
+  function signup(){
+    axios.post('http://localhost:3000/signup', {
+      'firstname': profile.firstname,
+      'lastname': profile.lastname,
+      'email': profile.email,
+      'password': profile.password
+    }, {withCredentials: true}).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    }).then(() => {
+      navigation.navigate('Home');
+    });
+  }
+  */
+
+  function onChangeTextField(key, e) {
+    setProfile({
+      ...profile,
+      [key]: e
+    })
+  }
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Step 1 of 3</Text>
-      <Text>Introduce Yourself</Text>
+      <Text>First Name</Text>
+      <TextInput style={styles.inputBox} 
+        backgroundColor='#1c313a' 
+        placeholder="Type here..."
+        placeholderTextColor = "black"
+        onChangeText={e => onChangeTextField('firstname', e)}
+      />
+      <Text>Last Name</Text> 
+      <TextInput style={styles.inputBox} 
+        backgroundColor='#1c313a' 
+        placeholder="Type here..."
+        placeholderTextColor = "black"
+        onChangeText={e => onChangeTextField('lastname', e)}
+      />
+      <Text>Email</Text>
+      <TextInput style={styles.inputBox} 
+        backgroundColor='#1c313a' 
+        placeholder="Type here..."
+        placeholderTextColor = "black"
+        onChangeText={e => onChangeTextField('email', e)}
+      />
+      <Text>Password</Text>
+      <TextInput style={styles.inputBox} 
+        backgroundColor='#1c313a' 
+        placeholder="Type here..."
+        placeholderTextColor = "black"
+        onChangeText={e => onChangeTextField('password', e)}
+      />
       <Text>Short Bio</Text>
       <TextInput style={styles.inputBox} 
         backgroundColor='#1c313a' 
@@ -30,7 +92,7 @@ function SignUpScreen1({ navigation }) {
         placeholder="Company name"
         placeholderTextColor = "black"
       />
-      <Button title="Next" onPress={() => navigation.navigate('SignUp2')} />
+      <Button title="Submit" onPress={signup} />
       <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
       <Text>Have an account?</Text> 
       <Button title="Login" onPress={() => navigation.navigate('Login')} />
@@ -69,4 +131,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SignUpScreen1
+export default SignUpScreen

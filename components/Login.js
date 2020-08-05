@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { Button, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import axios from 'axios';
 
-
 function LoginScreen({ navigation }) {
     const [currentUser, setCurrentUser] = useState({email: "", password: ""})
 
+    function login() {
+      console.log("...")
+    }
+    /*
     function login(){
       axios.post('http://localhost:3000/login', {
         'email': currentUser.email,
@@ -18,6 +21,7 @@ function LoginScreen({ navigation }) {
         navigation.navigate('Home');
       });
     }
+    */
 
     function onChangeTextField(key, e) {
       setCurrentUser({
