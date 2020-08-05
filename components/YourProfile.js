@@ -9,11 +9,24 @@ import {
 } from 'react-native-paper';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import axios from 'axios';
 
 function YourProfileScreen({ navigation, route }) {
-    const initialUser = {id: null, name: 'John Doe', description: 'SWE @ Google', organization: 'Red Cross Foundation', email: 'john_doe@email.com'}
+    const initialUser = {url: "", name: 'John Doe', description: 'SWE @ Google', organization: 'Red Cross Foundation', email: 'john_doe@email.com'}
     const [currentUser, setCurrentUser] = useState(initialUser)
-
+    useEffect(() => {
+      axios.get('http://localhost:3000/profile', {withCredentials: true}).then((res) => {
+        setCurrentUser({
+          name: res.data.firstname + " " + res.data.lastname,
+          description: res.data.description,
+          organization: res.data.organization,
+          email: res.data.email,
+          url: res.data.url
+        })
+      }).catch((err) => {
+        console.log(err);
+      });
+    }, []);
     function changeUserField(new_name, new_description, new_organization, new_email) {
       setCurrentUser({
         name: new_name,
@@ -27,7 +40,7 @@ function YourProfileScreen({ navigation, route }) {
       if (route.params?.status) {
         console.log("Done")
         changeUserField(route.params.name, route.params.description, route.params.organization, route.params.email)
-      } 
+      }
     }, [route.params?.status, route.params?.name, route.params?.description, route.params?.organization, route.params?.email])
 
     return (
@@ -35,7 +48,7 @@ function YourProfileScreen({ navigation, route }) {
             <View>
                 <View style={styles.userInfoSection}>
                     <View style={{flexDirection: 'row', marginTop: 15}}>
-                    <Avatar.Image 
+                    <Avatar.Image
                         source={{
                         uri: 'https://api.adorable.io/avatars/80/abott@adorable.png',
                         }}
@@ -50,7 +63,7 @@ function YourProfileScreen({ navigation, route }) {
                     </View>
                     </View>
                 </View>
-            
+
                 <View style={styles.userInfoSection}>
                     <View style={styles.row}>
                         <Icon name="map-marker-radius" color="#777777" size={20}/>
@@ -62,7 +75,7 @@ function YourProfileScreen({ navigation, route }) {
                     </View>
                 </View>
             </View>
-        
+
             <View style={styles.infoBoxWrapper}>
                 <View style={[styles.infoBox, {
                     borderRightColor: '#dddddd',
@@ -76,7 +89,7 @@ function YourProfileScreen({ navigation, route }) {
                     <Caption>Interactions</Caption>
                 </View>
             </View>
-        
+
             <View style={styles.menuWrapper}>
                 <TouchableRipple onPress={() => navigation.navigate('Interactions')}>
                 <View style={styles.menuItem}>
