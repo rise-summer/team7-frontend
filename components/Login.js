@@ -37,6 +37,8 @@ function LoginScreen({ navigation }) {
         <TextInput style={styles.inputBox}
           backgroundColor='#1c313a'
           placeholder="Email"
+          textContentType="emailAddress"
+          autoCompleteType="email"
           placeholderTextColor = "black"
           value={currentUser.email}
           onChangeText={e => onChangeTextField('email', e)}
@@ -46,6 +48,9 @@ function LoginScreen({ navigation }) {
           backgroundColor='#1c313a'
           placeholder="Password"
           placeholderTextColor = "black"
+          autoCompleteType="password"
+          secureTextEntry="true"
+          textContentType="password"
           value={currentUser.password}
           onChangeText={e => onChangeTextField('password', e)}
         />
