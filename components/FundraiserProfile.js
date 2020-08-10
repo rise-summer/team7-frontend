@@ -5,7 +5,7 @@ import NamePicture from "./NamePicture";
 import Bio from "./Bio";
 import CausesSupported from "./CausesSupported";
 import InteractionList from "./InteractionList";
-import InteractionButton from "./InteractionButton";
+// import InteractionButton from "./InteractionButton";
 // import Modal from "./Modal"
 
 // const causes = [
@@ -14,7 +14,7 @@ import InteractionButton from "./InteractionButton";
 // ];
 
 function Body() {
-  const [value, setValue] = useState(false);
+  const [value] = useState(false);
   // const [show,setShow] = useState(false);
   return (
     // Vertical layout of entire profile
@@ -31,7 +31,7 @@ function Body() {
         <Text style={{ fontSize: 30, paddingTop: 15, paddingRight: 15 }}>
           Accepting Interactions
         </Text>
-        <InteractionButton isOn={value} handleToggle={() => setValue(!value)} />
+        {/* <InteractionButton isOn={value} handleToggle={() => setValue(!value)} /> */}
       </View>
 
       <Bio />

@@ -1,5 +1,6 @@
 import React from "react";
-import "./InteractionButton.css";
+import "../CSS/InteractionButton.css";
+import PropTypes from "prop-types";
 
 const Switch = ({ isOn, handleToggle }) => {
   return (
@@ -12,7 +13,7 @@ const Switch = ({ isOn, handleToggle }) => {
         type="checkbox"
       />
       <label
-        style={{ background: isOn && "#06D6A0", marginTop: 20}}
+        style={{ background: isOn && "#06D6A0", marginTop: 20 }}
         className="react-switch-label"
         htmlFor={`react-switch-new`}
       >
@@ -20,6 +21,11 @@ const Switch = ({ isOn, handleToggle }) => {
       </label>
     </>
   );
+};
+
+Switch.propTypes = {
+  isOn: PropTypes.bool.isRequired,
+  handleToggle: PropTypes.func,
 };
 
 export default Switch;
