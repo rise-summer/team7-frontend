@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, View, Text, TextInput, StyleSheet, Picker } from 'react-native';
-import axios from 'axios';
 
 function SignUpScreen({ navigation }) {
   const [selectedValue, setSelectedValue] = useState("software");
@@ -18,18 +17,7 @@ function SignUpScreen({ navigation }) {
 
   /*
   function signup(){
-    axios.post('http://localhost:3000/signup', {
-      'firstname': profile.firstname,
-      'lastname': profile.lastname,
-      'email': profile.email,
-      'password': profile.password
-    }, {withCredentials: true}).then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log(err);
-    }).then(() => {
-      navigation.navigate('Home');
-    });
+
   }
   */
 

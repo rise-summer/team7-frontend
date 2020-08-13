@@ -1,27 +1,15 @@
 import React, { useState } from 'react';
 import { Button, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import axios from 'axios';
+import login from './auth.js';
 
 function LoginScreen({ navigation }) {
     const [currentUser, setCurrentUser] = useState({email: "", password: ""})
 
-    function login() {
-      console.log("...")
-    }
-    /*
-    function login(){
-      axios.post('http://localhost:3000/login', {
-        'email': currentUser.email,
-        'password': currentUser.password,
-      }, {withCredentials: true}).then((res) => {
-        console.log(res);
-      }).catch((err) => {
-        console.log(err);
-      }).then(() => {
+    function handleLogin() {
+      login(currentUser.email, currentUser.password).then(() => {
         navigation.navigate('Home');
-      });
+      });;
     }
-    */
 
     function onChangeTextField(key, e) {
       setCurrentUser({
@@ -54,7 +42,7 @@ function LoginScreen({ navigation }) {
           value={currentUser.password}
           onChangeText={e => onChangeTextField('password', e)}
         />
-        <TouchableOpacity style={styles.button} onPress={login}>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>

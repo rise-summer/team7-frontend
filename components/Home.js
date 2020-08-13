@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from "react";
 import { View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -10,29 +10,60 @@ import RequestsScreen from './Requests'
 import InteractionsScreen from './Interactions'
 
 const Stack = createStackNavigator();
+// const LoggedOutStack = createStackNavigator();
 
-function HomeScreen({ navigation }) {
+function logout(){
+  axios.post('http://localhost:3000/logout', {},
+   {withCredentials: true}).then((res) => {
+    console.log(res);
+  }).catch((err) => {
+    console.log(err);
+  });
+}
+
+function LoggedIn(){
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Login"
-        onPress={() => navigation.navigate('Login')}
-      />
-      <Button
-        title="Sign Up"
-        onPress={() => navigation.navigate('SignUp')}
-      />
-      <Button
-        title="Your Profile"
-        onPress={() => navigation.navigate('YourProfile')}
-      />
-      <Button
-        title="Requests"
-        onPress={() => navigation.navigate('Requests')}
-      />
-    </View>
+    <Text>Home Screen</Text>
+    <Button
+      title="Your Profile"
+      onPress={() => navigation.navigate('YourProfile')}
+    />
+    <Button
+      title="Requests"
+      onPress={() => navigation.navigate('Requests')}
+    />
+    <Button
+      title="Logout"
+      onPress={logout}
+    />
+  </View>
   );
+}
+
+function LoggedOut(){
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Home Screen</Text>
+    <Button
+      title="Login"
+      onPress={() => navigation.navigate('Login')}
+    />
+    <Button
+      title="Sign Up"
+      onPress={() => navigation.navigate('SignUp')}
+    />
+  </View>
+  );
+}
+
+function HomeScreen({ navigation }) {
+  const [signedIn, setSignedIn] = useState(false);
+  if(signedIn){
+    return <LoggedIn />;
+  }else{
+    return <LoggedOut />;
+  }
 }
 
 function Home() {
