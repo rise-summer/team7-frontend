@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import login from './auth.js';
+import GLOBALS from '../globals';
 
 function LoginScreen({ navigation }) {
     const [currentUser, setCurrentUser] = useState({email: "", password: ""})
 
+    const { login } = useContext(GLOBALS.AuthContext);
+
     function handleLogin() {
-      login(currentUser.email, currentUser.password).then(() => {
-        navigation.navigate('Home');
-      });;
+      login({email: currentUser.email, password: currentUser.password});
     }
 
     function onChangeTextField(key, e) {
@@ -23,7 +23,6 @@ function LoginScreen({ navigation }) {
         <Text>Login to our application</Text>
         <Text>Username</Text>
         <TextInput style={styles.inputBox}
-          backgroundColor='#1c313a'
           placeholder="Email"
           textContentType="emailAddress"
           autoCompleteType="email"
@@ -33,11 +32,10 @@ function LoginScreen({ navigation }) {
         />
         <Text>Password</Text>
         <TextInput style={styles.inputBox}
-          backgroundColor='#1c313a'
           placeholder="Password"
           placeholderTextColor = "black"
           autoCompleteType="password"
-          secureTextEntry="true"
+          secureTextEntry={true}
           textContentType="password"
           value={currentUser.password}
           onChangeText={e => onChangeTextField('password', e)}
@@ -49,7 +47,7 @@ function LoginScreen({ navigation }) {
           <Text style={styles.buttonText}>Go Back to Home</Text>
         </TouchableOpacity>
         <Text>Don't have an account?</Text>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUp1')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUp')}>
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
