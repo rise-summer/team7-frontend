@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 import NamePicture from "./NamePicture";
 import Bio from "./Bio";
 import CausesSupported from "./CausesSupported";
 import InteractionList from "./InteractionList";
-// import InteractionButton from "./InteractionButton";
+import SocialLinks from "./SocialLinks";
+
 // import Modal from "./Modal"
 
 // const causes = [
@@ -20,37 +21,40 @@ function Body() {
     // Vertical layout of entire profile
     <View
       style={{
-        justifyContent: "flex-start",
-        flexDirection: "column",
-        paddingVertical: 180,
-        paddingHorizontal: 280,
+        flex: 1,
+        flexDirection: "row",
+        paddingLeft: 201,
+        paddingTop: 64,
+        paddingRight: 84,
       }}
     >
-      <NamePicture />
-      <View style={{ flexDirection: "row" }}>
-        <Text style={{ fontSize: 30, paddingTop: 15, paddingRight: 15 }}>
-          Accepting Interactions
-        </Text>
-        {/* <InteractionButton isOn={value} handleToggle={() => setValue(!value)} /> */}
+      <View style={{ width: "20%" }}>
+        <NamePicture />
+        <Bio />
+        <SocialLinks />
       </View>
 
-      <Bio />
-      <CausesSupported />
-      {/* <ItemCard/> */}
-      <InteractionList isOn={value} />
-      {/* <Button onClick={() => setShow(true)}>trigger modal</Button> */}
-      {/* <Modal
-        handleButtonClick={() => {console.log("hi I'm sending the data to backend")}}
-        show={show}
-        setShow={setShow}
-      >
-        <View>
-          Hi
-        </View>
-      </Modal> */}
+      <View style={{ width: "70%" }}>
+        <CausesSupported />
+        <InteractionList isOn={value} />
+      </View>
     </View>
   );
 }
+
+// const styles = StyleSheet.create({
+//   row: {
+//     flex: 1,
+//     flexDirection: "row",
+//     flexWrap: "wrap",
+//     alignItems: "flex-start",
+//     // paddingVertical: 180,
+//     paddingHorizontal: 280,
+//   },
+//   column: {
+//     flexDirection: "column",
+//   },
+// });
 
 export default Body;
 

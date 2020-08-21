@@ -2,30 +2,36 @@ import React from "react";
 import { Text, View } from "react-native";
 
 function bio() {
-    return (
-    <View style={{ flex: 3, justifyContent: "space-between", paddingTop: 20}}>
-        <Text
+  return (
+    <View style={{ flex: 1, flexDirection: "column", position: "absolute" }}>
+      <Text
         style={{
-            fontFamily: "Helvetica-Bold",
-            fontSize: 25,
-            paddingVertical: 20,
+          fontFamily: "DM Sans",
+          fontStyle: "normal",
+          fontSize: 18,
+          fontWeight: 500,
+          color: "#848484",
+          paddingTop: 300,
         }}
-        >
-        Bio
-        </Text>
+      >
+        ABOUT
+      </Text>
 
-        <Text
+      <Text
         style={{
-            fontFamily: "Helvetica-Light",
-            fontSize: 25,
-            paddingVertical: 10,
+          fontFamily: "DM Sans",
+          fontStyle: "normal",
+          fontSize: 16,
+          fontWeight: "normal",
+          paddingTop: 12,
+          lineHeight: 20,
         }}
-        >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna ac
-        consequat vel mi faucibus magna quisque vitae sit.
-        </Text>
+      >
+        I currently work on the Google Maps team. I studied Computer Science at
+        Carnegie Mellon University and I love hiking and baking in my free time!
+      </Text>
     </View>
-    )
+  );
 }
 
-export default bio
+export default bio;

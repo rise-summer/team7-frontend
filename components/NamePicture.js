@@ -10,29 +10,31 @@ function nameBio() {
             "https://www.apple.com/leadership/images/bio/tim-cook_image.png.og.png?1594405778182",
         }}
         style={{
-          width: 180,
-          height: 180,
+          width: 163,
+          height: 163,
           borderRadius: 400 / 2,
-          paddingLeft: 30,
         }}
       />
       <Text
         style={{
-          fontFamily: "Helvetica-Bold",
-          fontSize: 45,
-          paddingTop: 30,
+          fontFamily: "DM Sans",
+          fontStyle: "normal",
+          fontSize: 25,
+          fontWeight: 500,
+          paddingTop: 25,
         }}
       >
-        Tim Cook
+        Devon Lane
       </Text>
       <Text
         style={{
-          fontFamily: "Helvetica",
-          fontSize: 25,
-          paddingTop: 8,
+          fontFamily: "DM Sans",
+          fontStyle: "normal",
+          fontSize: 21,
+          fontWeight: "normal",
         }}
       >
-        @timcook
+        Product manager at Google
       </Text>
     </View>
   );
