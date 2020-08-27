@@ -43,36 +43,44 @@ function SignUpScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>First Name</Text>
-      <TextInput style={styles.inputBox} 
-        backgroundColor='#1c313a' 
+      <TextInput style={styles.inputBox}
+        backgroundColor='#1c313a'
         placeholder="Type here..."
         placeholderTextColor = "black"
+        textContentType="givenName"
         onChangeText={e => onChangeTextField('firstname', e)}
       />
-      <Text>Last Name</Text> 
-      <TextInput style={styles.inputBox} 
-        backgroundColor='#1c313a' 
+      <Text>Last Name</Text>
+      <TextInput style={styles.inputBox}
+        backgroundColor='#1c313a'
         placeholder="Type here..."
         placeholderTextColor = "black"
+        textContentType="familyName"
         onChangeText={e => onChangeTextField('lastname', e)}
       />
       <Text>Email</Text>
-      <TextInput style={styles.inputBox} 
-        backgroundColor='#1c313a' 
+      <TextInput style={styles.inputBox}
+        backgroundColor='#1c313a'
         placeholder="Type here..."
         placeholderTextColor = "black"
+        textContentType="emailAddress"
+        autoCompleteType="email"
         onChangeText={e => onChangeTextField('email', e)}
       />
       <Text>Password</Text>
-      <TextInput style={styles.inputBox} 
-        backgroundColor='#1c313a' 
+      <TextInput style={styles.inputBox}
+        backgroundColor='#1c313a'
         placeholder="Type here..."
         placeholderTextColor = "black"
+        autoCompleteType="password"
+        secureTextEntry="true"
+        textContentType="newPassword"
+        passwordRules="minlength: 8"
         onChangeText={e => onChangeTextField('password', e)}
       />
       <Text>Short Bio</Text>
-      <TextInput style={styles.inputBox} 
-        backgroundColor='#1c313a' 
+      <TextInput style={styles.inputBox}
+        backgroundColor='#1c313a'
         placeholder="Type here..."
         placeholderTextColor = "black"
       />
@@ -87,14 +95,15 @@ function SignUpScreen({ navigation }) {
         <Picker.Item label="Business" value="business" />
       </Picker>
       <Text>What company do you work at?</Text>
-      <TextInput style={styles.inputBox} 
-        backgroundColor='#1c313a' 
+      <TextInput style={styles.inputBox}
+        backgroundColor='#1c313a'
         placeholder="Company name"
         placeholderTextColor = "black"
+        textxContentType="organizationName"
       />
       <Button title="Submit" onPress={signup} />
       <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Text>Have an account?</Text> 
+      <Text>Have an account?</Text>
       <Button title="Login" onPress={() => navigation.navigate('Login')} />
     </View>
   );
@@ -106,7 +115,7 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       alignItems: 'center'
     },
-  
+
     inputBox: {
       width:300,
       backgroundColor:'rgba(255, 255,255,0.2)',
