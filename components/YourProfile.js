@@ -14,6 +14,7 @@ import axios from 'axios';
 function YourProfileScreen({ navigation, route }) {
     const initialUser = {url: "", name: 'John Doe', description: 'SWE @ Google', organization: 'Red Cross Foundation', email: 'john_doe@email.com'}
     const [currentUser, setCurrentUser] = useState(initialUser)
+    /*
     useEffect(() => {
       axios.get('http://localhost:3000/profile', {withCredentials: true}).then((res) => {
         setCurrentUser({
@@ -27,6 +28,7 @@ function YourProfileScreen({ navigation, route }) {
         console.log(err);
       });
     }, []);
+    */
     function changeUserField(new_name, new_description, new_organization, new_email) {
       setCurrentUser({
         name: new_name,
