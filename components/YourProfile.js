@@ -7,6 +7,7 @@ import {
   Text,
   TouchableRipple,
 } from 'react-native-paper';
+import GLOBALS from '../globals';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import axios from 'axios';
@@ -14,9 +15,13 @@ import axios from 'axios';
 function YourProfileScreen({ navigation, route }) {
     const initialUser = {url: "", name: 'John Doe', description: 'SWE @ Google', organization: 'Red Cross Foundation', email: 'john_doe@email.com'}
     const [currentUser, setCurrentUser] = useState(initialUser)
-    /*
+    const { getAuthState } = React.useContext(GLOBALS.AuthContext);
     useEffect(() => {
-      axios.get('http://localhost:3000/profile', {withCredentials: true}).then((res) => {
+      axios.get(`${GLOBALS.backend_url}/profile`, {
+        headers: {
+          'Authorization': `JWT ${getAuthState().userToken}`
+        }
+      }).then((res) => {
         setCurrentUser({
           name: res.data.firstname + " " + res.data.lastname,
           description: res.data.description,
@@ -28,7 +33,6 @@ function YourProfileScreen({ navigation, route }) {
         console.log(err);
       });
     }, []);
-    */
     function changeUserField(new_name, new_description, new_organization, new_email) {
       setCurrentUser({
         name: new_name,

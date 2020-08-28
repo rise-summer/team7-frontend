@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, View, Text, TextInput, StyleSheet, Picker } from 'react-native';
-import axios from 'axios';
+import GLOBALS from '../globals';
 
 function SignUpScreen({ navigation }) {
   const [selectedValue, setSelectedValue] = useState("software");
@@ -10,26 +10,19 @@ function SignUpScreen({ navigation }) {
     lastname: "",
     email: "",
     password: "",
-  })
+    description: "",
+    organization: ""
+  });
 
-  function signup() {
-    console.log("...")
+  const { signup } = useContext(GLOBALS.AuthContext);
+
+  function handleSignup(){
+    signup(profile);
   }
 
   /*
   function signup(){
-    axios.post('http://localhost:3000/signup', {
-      'firstname': profile.firstname,
-      'lastname': profile.lastname,
-      'email': profile.email,
-      'password': profile.password
-    }, {withCredentials: true}).then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log(err);
-    }).then(() => {
-      navigation.navigate('Home');
-    });
+
   }
   */
 
@@ -44,7 +37,6 @@ function SignUpScreen({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>First Name</Text>
       <TextInput style={styles.inputBox}
-        backgroundColor='#1c313a'
         placeholder="Type here..."
         placeholderTextColor = "black"
         textContentType="givenName"
@@ -52,7 +44,6 @@ function SignUpScreen({ navigation }) {
       />
       <Text>Last Name</Text>
       <TextInput style={styles.inputBox}
-        backgroundColor='#1c313a'
         placeholder="Type here..."
         placeholderTextColor = "black"
         textContentType="familyName"
@@ -60,7 +51,6 @@ function SignUpScreen({ navigation }) {
       />
       <Text>Email</Text>
       <TextInput style={styles.inputBox}
-        backgroundColor='#1c313a'
         placeholder="Type here..."
         placeholderTextColor = "black"
         textContentType="emailAddress"
@@ -69,20 +59,19 @@ function SignUpScreen({ navigation }) {
       />
       <Text>Password</Text>
       <TextInput style={styles.inputBox}
-        backgroundColor='#1c313a'
         placeholder="Type here..."
         placeholderTextColor = "black"
         autoCompleteType="password"
-        secureTextEntry="true"
+        secureTextEntry={true}
         textContentType="newPassword"
         passwordRules="minlength: 8"
         onChangeText={e => onChangeTextField('password', e)}
       />
       <Text>Short Bio</Text>
       <TextInput style={styles.inputBox}
-        backgroundColor='#1c313a'
         placeholder="Type here..."
         placeholderTextColor = "black"
+        onChangeText={e => onChangeTextField('description', e)}
       />
       <Text>What industry do you work at?</Text>
       <Picker
@@ -96,12 +85,12 @@ function SignUpScreen({ navigation }) {
       </Picker>
       <Text>What company do you work at?</Text>
       <TextInput style={styles.inputBox}
-        backgroundColor='#1c313a'
         placeholder="Company name"
         placeholderTextColor = "black"
         textxContentType="organizationName"
+        onChangeText={e => onChangeTextField('organization', e)}
       />
-      <Button title="Submit" onPress={signup} />
+      <Button title="Submit" onPress={handleSignup} />
       <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
       <Text>Have an account?</Text>
       <Button title="Login" onPress={() => navigation.navigate('Login')} />
