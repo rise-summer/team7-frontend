@@ -7,6 +7,11 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/DMSans"
+    ]
+  },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.7.1",
@@ -16,8 +21,10 @@
     "expo-constants": "~9.1.1",
     "expo-image-picker": "~8.3.0",
     "expo-permissions": "~9.0.1",
+    "expo-font": "~8.2.1",
     "expo-status-bar": "^1.0.2",
     "react": "~16.11.0",
+    "react-bootstrap": "^1.2.2",
     "react-dom": "~16.11.0",
     "react-native": "^0.63.2",
     "react-native-gesture-handler": "~1.6.0",
@@ -31,7 +38,8 @@
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.4.0",
     "react-navigation-stack": "^2.8.2",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "react-native-elements": "^2.0.4",
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
