@@ -1,13 +1,13 @@
 import React from "react";
 import { Text, View, Image } from "react-native";
 
-function nameBio() {
+function nameBio(props) {
   return (
     <View style={{ flex: 1, flexDirection: "column" }}>
       <Image
         source={{
           uri:
-            "https://www.apple.com/leadership/images/bio/tim-cook_image.png.og.png?1594405778182",
+            `https://avatars.dicebear.com/api/jdenticon/${props.name}.svg?w=163&h=163`,
         }}
         style={{
           width: 163,
@@ -24,7 +24,7 @@ function nameBio() {
           paddingTop: 25,
         }}
       >
-        Devon Lane
+        {props.name}
       </Text>
       <Text
         style={{
@@ -34,7 +34,7 @@ function nameBio() {
           fontWeight: "normal",
         }}
       >
-        Product manager at Google
+        {props.occupation}
       </Text>
     </View>
   );

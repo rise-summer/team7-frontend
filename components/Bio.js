@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-function bio() {
+function bio(props) {
   return (
     <View style={{ flex: 1, flexDirection: "column", position: "absolute" }}>
       <Text
@@ -27,8 +27,7 @@ function bio() {
           lineHeight: 20,
         }}
       >
-        I currently work on the Google Maps team. I studied Computer Science at
-        Carnegie Mellon University and I love hiking and baking in my free time!
+        {props.bio}
       </Text>
     </View>
   );

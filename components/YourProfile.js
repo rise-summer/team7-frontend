@@ -31,6 +31,7 @@ function YourProfileScreen({ navigation, route }) {
         })
       }).catch((err) => {
         console.log(err);
+        //logout
       });
     }, []);
     function changeUserField(new_name, new_description, new_organization, new_email) {
