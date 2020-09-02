@@ -8,6 +8,8 @@ import YourProfileScreen from './YourProfile'
 import EditProfileScreen from './EditProfile'
 import RequestsScreen from './Requests'
 import InteractionsScreen from './Interactions'
+import NotFound from './NotFound'
+import FundraiserProfile from './FundraiserProfile'
 import { AsyncStorage } from "react-native";
 import axios from "axios";
 import GLOBALS from '../globals';
@@ -64,7 +66,9 @@ function Home() {
         Home: 'home',
         Login: 'login',
         YourProfile: 'profile',
-        SignUp: 'signup'
+        SignUp: 'signup',
+        User: 'user/:slug',
+        NotFound: '*'
       },
     },
   };
@@ -197,6 +201,8 @@ function Home() {
         <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Interactions" component={InteractionsScreen} />
+          <Stack.Screen name="NotFound" component={NotFound} />
+          <Stack.Screen name="User" component={FundraiserProfile} />
           {state.userToken == null ? (
             <>
             <Stack.Screen name="Login" component={LoginScreen} />
